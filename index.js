@@ -4,9 +4,9 @@ const { MONGO_USER,
         MONGO_PASSWORD,
         MONGO_IP,
         MONGO_PORT 
-    } = require('./config')
+    } = require('./config/config')
 
-
+const postRouter = require("./routes/postRoutes")
 
 const app = express()
 
@@ -25,11 +25,16 @@ const connectWithRetry = () => {
         })
 }
 
-connectWithRetry();
+connectWithRetry()
 
-const PORT = process.env.PORT || 3000
+app.use(express.json())
 
 app.get('/', (req, res) => res.send('<h1>Hello World!</h1>'))
 
+app.use('/api/v1/posts', postRouter)
+
+
+
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => console.log(`Server runnning on port: ${PORT}`))
