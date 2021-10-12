@@ -5,9 +5,10 @@ const { MONGO_USER,
         MONGO_IP,
         MONGO_PORT 
     } = require('./config/config')
-const request = require('request');
+// const request = require('request');
 
 const postRouter = require("./routes/postRoutes")
+const userRouter = require("./routes/userRoutes")
 
 const app = express()
 
@@ -30,9 +31,10 @@ connectWithRetry()
 
 app.use(express.json())
 
-app.get('/', (req, res) => res.send('<h1>Hello World!!</h1>'))
+app.get('/', (req, res) => res.send('<h1>Hello World!</h1>'))
 
 app.use('/api/v1/posts', postRouter)
+app.use('/api/v1/users', userRouter)
 
 
 
