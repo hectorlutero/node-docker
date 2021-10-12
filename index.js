@@ -5,6 +5,7 @@ const { MONGO_USER,
         MONGO_IP,
         MONGO_PORT 
     } = require('./config/config')
+const request = require('request');
 
 const postRouter = require("./routes/postRoutes")
 
